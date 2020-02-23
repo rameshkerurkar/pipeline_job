@@ -1,5 +1,5 @@
 !#/bin/sh
-url='http://13.58.3.126:8080/'
+url='http://13.58.9.52:8080/'
 attempts=1
 timeout=5
 online=false
