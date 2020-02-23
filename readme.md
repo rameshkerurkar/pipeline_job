@@ -100,14 +100,15 @@ Prod-deployer
 
 And tried to build an image but it revoked all manual role setup and starts jenkins with initially
 
-I have tried this using groovy script by calling script in the dockerfile
-But got and java class plugin error which unable to resolvedt as I am notthat much of expertise in Groovy script so created Roles Admin role using Login Auth Strategy.
+Then, I have tried this Role based Strategy using groovy script by calling script in the dockerfile
+But got and java class plugin error which unable to resolved as I am notthat much of expertise in Groovy script so created Roles Admin role using Login Auth Strategy.
 In my previous project this actvitity done by Matrix authorisation Startegy which is handled byseperate DevTool team.
 
 Below error : WARNING: Failed to run script file:/var/lib/jenkins/init.groovy.d/role-auth.groovy
 groovy.lang.MissingPropertyException: No such property: RoleType for class: role-auth
 
-
+So the Part 1 has been handled using Login Auth Strategy.
+Please find script 
 
 pipeline {
   environment {
