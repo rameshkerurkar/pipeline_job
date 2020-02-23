@@ -2,7 +2,7 @@ Many thanks for the opportunity.
 I have choose Technical Assignment 1 as I am quite familiar with some of the concepts of Jenkins and docker. 
 To start of this I have used my AWS account where I can create ubuntu unix server. 
 
-Part 1.	
+###Part 1.	
 Build a custom Jenkins Docker image from the official base 
 Install role based auth strategy plugin if not there https://plugins.jenkins.io/role-strategy
 Enable the following roles:
@@ -110,7 +110,8 @@ groovy.lang.MissingPropertyException: No such property: RoleType for class: role
 So the Part 1 has been handled using Login Auth Strategy.
 Please find script security.groovy
 
-Part 2.	Create a pipeline to automate and publish the above image after testing the relevant parts.
+#####Part 2###########
+Create a pipeline to automate and publish the above image after testing the relevant parts.
 Please find below pipeline as code.
 
 pipeline {
@@ -158,11 +159,12 @@ pipeline {
 
 For test please find test cases where I have taken the Login And Password page as test cases, If I am able to access URL means output is 200 then my test case is passed with out any issue. It will thro the excetion if any issues.
 
-Run pipeline JOB with below Jenkins details
+Please find the pipeline screenshot for more details and run jenkins job with below details
 URL : 18.221.140.131:9090/
 User : signmentSAdmin
 Password: AssignmentS
 
+######Part 3##########
 Run the above image on a hosted Docker service.
 Please check below URL where Jenkins run in the container
 URL : 18.221.140.131:8080/
