@@ -108,7 +108,10 @@ Below error : WARNING: Failed to run script file:/var/lib/jenkins/init.groovy.d/
 groovy.lang.MissingPropertyException: No such property: RoleType for class: role-auth
 
 So the Part 1 has been handled using Login Auth Strategy.
-Please find script 
+Please find script security.groovy
+
+Part 2.	Create a pipeline to automate and publish the above image after testing the relevant parts.
+Please find below pipeline as code.
 
 pipeline {
   environment {
@@ -152,3 +155,7 @@ pipeline {
         }
     }
 }
+
+For test please find test cases where I have taken the Login And Password page as test cases, If I am able to access URL means output is 200 then my test case is passed with out any issue. It will thro the excetion if any issues.
+
+
