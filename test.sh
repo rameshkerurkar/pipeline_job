@@ -1,9 +1,12 @@
-!#/bin/bash
-url=http://13.58.3.126:8080/
+!#/bin/sh
+url='http://13.58.3.126:8080/'
+attempts=1
+timeout=5
+online=false
 
 echo "Checking status of $url."
 
-for (( i=1; i<=$attempts; i++ ))
+while [ $attempts -gt 0 ];
 do
   code=`curl -sL -u Admin:AssignmentS --connect-timeout 20 --max-time 30 -w "%{http_code}\\n" "$url" -o /dev/null`
 
