@@ -159,10 +159,10 @@ pipeline {
 For test please find test cases where I have taken the Login And Password page as test cases, If I am able to access URL means output is 200 then my test case is passed with out any issue. It will thro the excetion if any issues.
 
 Run pipeline JOB with below Jenkins details
-URL :
+URL : 18.221.140.131:9090/
 User : signmentSAdmin
 Password: AssignmentS
 
 Run the above image on a hosted Docker service.
 Please check below URL where Jenkins run in the container
-
+URL : 18.221.140.131:8080/
