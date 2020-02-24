@@ -93,7 +93,7 @@ Developer
 Prod-deployer
 
 Note : Above steps I did tried to complete by Dockerfile(for Jenkins Image creation) and groovy script (to enable role based strategy and create roles and assign permissions) 
-I have tried Role based Strategy using groovy script by calling script in the dockerfile attaching the same (role-based-auth.groovy)
+I have tried Role based Strategy using groovy script by calling script in the dockerfile attaching the same (role-auth.groovy)
 But got java class plugin error which unable to resolved as I am not that much of expertise in Groovy script so created Roles Admin role using Login Auth Strategy.
 In my previous project this actvitity done by Matrix authorisation Startegy which is handled by seperate DevTool team.
 
