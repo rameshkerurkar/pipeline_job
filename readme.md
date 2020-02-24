@@ -109,10 +109,8 @@ pipeline {
     registry = "rameshkerurkar/pipeline_assignment"
     registryCredential = 'dockerhub'
    }
-  
-  agent any
-  
-  stages {
+    agent any
+    stages {
       stage('Cloning Git') {
           steps {
               git credentialsId: 'github', url: 'https://github.com/rameshkerurkar/pipeline_job.git'
