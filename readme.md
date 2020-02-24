@@ -4,10 +4,10 @@ To start of this I have used my AWS account where I can create ubuntu unix serve
 
 Overview : To perform the given assignment , I have used a master jenkins to perform the end to end process and through the master jankins pipeline job I am able to complete the below pipeline stages :
 
-Build a custom Jenkins docker image with help of Dockerfile (Install custom plugins and create user with enabling one of security strategy)
-Run the created custom jenkins image with port 8080 and 50000 and volume path
-Test the running jenkins container url with one of username and password (If the URL is not accessible the build will failed)
-Publish the Image on dockerhub after successful passing test cases
+. Build a custom Jenkins docker image with help of Dockerfile (Install custom plugins and create user with enabling one of security strategy).
+. Run the created custom jenkins image with port 8080 and 50000 and volume path.
+. Test the running jenkins container url with one of username and password (If the URL is not accessible the build will failed).
+. Publish the Image on dockerhub after successful passing test cases.
 
 
 
