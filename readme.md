@@ -2,7 +2,16 @@ Many thanks for the opportunity.
 I have choose Technical Assignment 1 as I am quite familiar with some of the concepts of Jenkins and docker. 
 To start of this I have used my AWS account where I can create ubuntu unix server. 
 
-###Part 1.	
+Overview : To perform the given assignment , I have used a master jenkins to perform the end to end process and through the master jankins pipeline job I am able to complete the below pipeline stages :
+
+Build a custom Jenkins docker image with help of Dockerfile (Install custom plugins and create user with enabling one of security strategy)
+Run the created custom jenkins image with port 8080 and 50000 and volume path
+Test the running jenkins container url with one of username and password (If the URL is not accessible the build will failed)
+Publish the Image on dockerhub after successful passing test cases
+
+
+
+###Part 1  #############
 Build a custom Jenkins Docker image from the official base 
 Install role based auth strategy plugin if not there https://plugins.jenkins.io/role-strategy
 Enable the following roles:
@@ -13,6 +22,7 @@ Enable the following roles:
 Give relevant access to the above roles
 Save image back on Docker hub
 
+Below steps for my master Jenkins creation and enable role based authentication :
 I have created EC2 ubuntu instance in AWS. 
 First java should be installed to run the Jenkins
 
@@ -21,7 +31,7 @@ sudo apt-get update
 sudo apt-get install default-jdk -y
 java --version
 
-Install Jenkins
+Install master Jenkins
 Before installing Jenkins, add the key and then the sources list to apt.
 
 wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
@@ -55,8 +65,6 @@ You will get a randomly generated initial password like this one:
 7620hf6499ad24a7b88a7a38f8b30c8c2
 Copy the password and then paste it in the provided input field.
 
-Press Continue.
-
 Install Plugins
 
 Fortunately, the community took notice of this situation and Jenkins can be set up from the beginning with the plugins that the Jenkins community recommends.
@@ -78,26 +86,23 @@ Configuration Complete
 Jenkins is ready and you can start working with it.
 
 Next to enable Rolebased Authentication under global security 
-Created Below Roles manually,
+Created Below Roles manually, Aggigne roles accordingly.
 
 Deployer
 Developer
 Prod-deployer
 
-Note : Above steps I did tried to do by Dockerfile(for Jenkins Image creation) and groovy script (to enable role based strategy and create roles and assign permissions) 
-I have tried this Role based Strategy using groovy script by calling script in the dockerfile
+Note : Above steps I did tried to complete by Dockerfile(for Jenkins Image creation) and groovy script (to enable role based strategy and create roles and assign permissions) 
+I have tried Role based Strategy using groovy script by calling script in the dockerfile attaching the same (role-based-auth.groovy)
 But got java class plugin error which unable to resolved as I am not that much of expertise in Groovy script so created Roles Admin role using Login Auth Strategy.
-In my previous project this actvitity done by Matrix authorisation Startegy which is handled byseperate DevTool team.
+In my previous project this actvitity done by Matrix authorisation Startegy which is handled by seperate DevTool team.
 
 Below error : WARNING: Failed to run script file:/var/lib/jenkins/init.groovy.d/role-auth.groovy
 groovy.lang.MissingPropertyException: No such property: RoleType for class: role-auth
 
-So the Part 1 has been handled using Login Auth Strategy.
-Please find script security.groovy
 
-#####Part 2###########
-Create a pipeline to automate and publish the above image after testing the relevant parts.
-Please find below pipeline as code.
+So in the Part 1 I used manully steps(on my master Jenkins 18.221.140.131:9090) and also I used in pipeline automated process with the Authorization Strategy (with Logged in user having the full access) which works fineon the running container on (18.221.140.131:8080). Please find script security.groovy calling in Dockerfile and below are the steps of pipeline to do this.
+
 
 pipeline {
   environment {
@@ -125,6 +130,16 @@ pipeline {
                 sh 'docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkinsnew_home rameshkerurkar/pipeline_assignment":$BUILD_NUMBER"'
             }
         }
+      }  
+
+#####Part 2######################
+Create a pipeline to automate and publish the above image after testing the relevant parts.
+
+
+Below stages I have included in pipeline to complete the part2 of assignment:
+
+
+
         stage('Test the jenkins is running and user authentication') {
             steps {
                 sh 'sh ./test.sh'
@@ -138,9 +153,7 @@ pipeline {
                     }
                 }  
             }
-        }
-    }
-}
+
 
 For test please find test cases where I have taken the Login And Password page as test cases, If I am able to access URL means output is 200 then my test case is passed with out any issue. It will thro the excetion if any issues.
 
@@ -151,5 +164,27 @@ Password: AssignmentS
 
 ######Part 3##########
 Run the above image on a hosted Docker service.
-Please check below URL where Jenkins run in the container
+Please check below URL where Jenkins running in a docker container
 URL : 18.221.140.131:8080/
+
+I have included the all parts of assignment in a single pipeline which is created on my master jenkins (18.221.140.131:9090)
+
+So below stages I have included in pipeline as part3 of assignment :
+
+
+        stage('run docker container from image') {
+            steps {
+                sh 'docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkinsnew_home rameshkerurkar/pipeline_assignment":$BUILD_NUMBER"'
+            }
+                stage('publish docker image to dockerhub') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential )  {
+                        sh 'docker push rameshkerurkar/pipeline_assignment":$BUILD_NUMBER"'
+                    }
+                }  
+            } 
+            
+            
+            
+            
