@@ -101,7 +101,7 @@ Below error : WARNING: Failed to run script file:/var/lib/jenkins/init.groovy.d/
 groovy.lang.MissingPropertyException: No such property: RoleType for class: role-auth
 
 
-So in the Part 1 I used manully steps(on my master Jenkins 18.221.140.131:9090) and also I used in pipeline automated process with the Authorization Strategy (with Logged in user having the full access) which works fineon the running container on (18.221.140.131:8080). Please find script security.groovy calling in Dockerfile and below are the steps of pipeline to do this.
+So in the Part 1 I used manully steps(on my master Jenkins 18.221.140.131:9090) and also I used in pipeline automated process with the Authorization Strategy (with Logged in user having the full access) which works fine on the running container on (18.221.140.131:8080). Please find script security.groovy calling in Dockerfile and below are the steps of pipeline to do this.
 
 
 pipeline {
