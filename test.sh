@@ -4,7 +4,7 @@ attempts=1
 timeout=5
 online=false
 
-echo "Checking status of $url."
+echo "Checking status of jenkins $url."
 
 while [ $attempts -gt 0 ];
 do
@@ -13,19 +13,19 @@ do
   echo "Found code $code for $url."
 
   if [ "$code" = "200" ]; then
-    echo "Website $url is online."
+    echo "Jenkins $url is online."
     online=true
     break
   else
-    echo "Website $url seems to be offline. Waiting $timeout seconds."
+    echo "Jenkins $url seems to be offline. Waiting $timeout seconds."
     sleep $timeout
   fi
 done
 
 if $online; then
-  echo "Monitor finished, website is online."
+  echo "Monitor finished, Jenkins is online and able to login by Admin user."
   exit 0
 else
-  echo "Monitor failed, website seems to be down."
+  echo "Monitor failed, Jenkins seems to be down."
   exit 1
 fi
