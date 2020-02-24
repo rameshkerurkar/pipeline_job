@@ -103,7 +103,6 @@ groovy.lang.MissingPropertyException: No such property: RoleType for class: role
 
 So in the Part 1 I used manully steps(on my master Jenkins 18.221.140.131:9090) and also I used in pipeline automated process with the Authorization Strategy (with Logged in user having the full access) which works fine on the running container on (18.221.140.131:8080). Please find script security.groovy calling in Dockerfile and below are the steps of pipeline to do this.
 
-
 pipeline {
   environment {
     registry = "rameshkerurkar/pipeline_assignment"
@@ -128,7 +127,10 @@ pipeline {
                 sh 'docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkinsnew_home rameshkerurkar/pipeline_assignment":$BUILD_NUMBER"'
             }
         }
-      }  
+      }
+
+  
+
 
 #####Part 2######################
 Create a pipeline to automate and publish the above image after testing the relevant parts.
